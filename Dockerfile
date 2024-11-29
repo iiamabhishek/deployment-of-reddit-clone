@@ -1,9 +1,23 @@
-FROM node:19-alpine3.15
+# Use a smaller, more efficient Node.js base image
+FROM node:19-alpine
 
+# Set the working directory
 WORKDIR /reddit-clone
 
-COPY . /reddit-clone
-RUN npm install 
+# Copy only package.json and package-lock.json for dependency installation
+COPY package*.json ./
 
+# Install dependencies
+RUN npm install --production
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the application port
 EXPOSE 3000
-CMD ["npm","run","dev"]
+
+# Use a default non-root user for better security
+USER node
+
+# Start the application
+CMD ["npm", "run", "dev"]
