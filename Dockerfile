@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
+# Fix permissions for the project directory
+RUN chown -R node:node /reddit-clone
+
 # Expose the application port
 EXPOSE 3000
 
