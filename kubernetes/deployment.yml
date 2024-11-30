@@ -14,10 +14,8 @@ spec:
       labels:
         app: reddit-clone
     spec:
-      imagePullSecrets:
-        - name: regcred
       containers:
       - name: reddit-clone
-        image: iiamabhishek05/reddit:v1.2
+        image: iiamabhishek05/reddit-app:v1.2
         ports:
         - containerPort: 3000
